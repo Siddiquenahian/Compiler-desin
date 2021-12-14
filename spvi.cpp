@@ -4,7 +4,8 @@ using namespace std;
 
 string removeComments(string str)//Nahian Siddique
 {
-    string value = "";
+  //what is this 
+  string value = "";
     int length = str.length();
     bool multiComment = false;
     bool singleComment = false;
