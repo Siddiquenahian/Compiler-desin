@@ -4,7 +4,6 @@ using namespace std;
 
 string removeComments(string str)//Nahian Siddique
 {
-  //what is this 
   string value = "";
     int length = str.length();
     bool multiComment = false;
@@ -40,6 +39,29 @@ string removeComments(string str)//Nahian Siddique
     }
    return value;
 }
+//Razve Khan Tanmoy
+string removeSpace(string str)
+{
+    int length = str.length();
+    string value;
+    int spaceCount = 0;
+    for (int i=0;i<length;i++)
+    {
+        if (str[i] == ' ')
+        {
+            spaceCount++;
+        }
+        else
+        {
+            if (spaceCount >= 1)
+                value+= ' ';
+            value+= str[i];
+            spaceCount = 0;
+        }
+    }
+    return value;
+}
+
 
 //Mujahidul Islam
 string resolveMacro(string str)
@@ -102,13 +124,14 @@ int main()
 ||\\$//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\$//||
 ||====================================================================||
 )EOF");
+
+
     cout<<""<< endl;
     string str;
     getline(cin,str,'~');
-    cout<< removeComments(str);
+    string removed_comment = removeComments(str);
     string removed_space =  removeSpace(removed_comment);
     cout<<resolveMacro(removed_space);
 
-
     return 0;
-    }
+}
