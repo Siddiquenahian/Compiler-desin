@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <iostream>
 using namespace std;
-string removeComments(string str)
+
+string removeComments(string str)//Nahian Siddique
 {
     string value = "";
     int length = str.length();
@@ -36,6 +37,48 @@ string removeComments(string str)
             value += str[i];
         }
     }
+   return value;
+}
+
+//Mujahidul Islam
+string resolveMacro(string str)
+{
+    int length = str.length();
+    string value;
+    string macro_name;
+    bool macro_found = false;
+    char macro_value;
+
+    bool macro = false;
+    for (int i=0;i<length;i++)
+    {
+        if(str[i] == '#' && str[i+1] == 'd')
+        {
+            macro = true;
+        }
+        if(macro && !macro_found  && str[i] == ' ')
+        {
+            int temp = i+1;
+            while(str[temp]!= ' ')
+            {
+                macro_name+= str[temp++];
+                macro_found = true;
+            }
+        }
+        if(macro && str[i] == '\n')
+        {
+            macro_value = str[i-1];
+            macro = false;
+        }
+
+        if(macro_found && str[i] == macro_name[0] && str[i+1] == macro_name[1] && str[i+2] == macro_name[2])
+        {
+            value+= macro_value;
+            i+= 2;
+            continue;
+        }
+        value+= str[i];
+    }
     return value;
 }
 
@@ -62,6 +105,8 @@ int main()
     string str;
     getline(cin,str,'~');
     cout<< removeComments(str);
+    string removed_space =  removeSpace(removed_comment);
+    cout<<resolveMacro(removed_space);
 
 
     return 0;
